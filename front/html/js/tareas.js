@@ -126,6 +126,22 @@ var vm = new Vue({
     },
 
     marcar: function(id) {
+      this.loading = true;
+      this.$http.get('http://127.0.0.1:8000/tareas/' + id + '/', {
+          headers: {
+            "Authorization": "Token " + (localStorage.token),
+          },
+        })
+        .then((response) => {
+
+          this.delTareas = response.data;
+          console.log(this.delTareas);
+          this.loading = false;
+        })
+        .catch((err) => {
+          this.loading = false;
+          console.log(err);
+        })
       this.Tareas.pending = !this.Tareas.pending;
       console.log(this.Tareas.pending);
       if (this.Tareas.pending) {
@@ -138,7 +154,6 @@ var vm = new Vue({
           .then((response) => {
             this.loading = false;
             this.delTareas = response.data;
-            console.log(this.Tareas.description);
           })
           .catch((err) => {
             this.loading = false;
@@ -163,21 +178,33 @@ var vm = new Vue({
       }
     },
 
-    deleteTareas: function(id) {
+    deleteTareas: function() {
+      for (var i = 0; i < this.Tareas.length; i++) {
+        console.log(this.Tareas[i].pending);
+        if (!this.Tareas[i].pending) {
+          this.loading = true;
+          this.$http.delete('http://127.0.0.1:8000/tareas/' + this.Tareas[i].id + '/', {
+            headers: {
+              "Authorization": "Token " + (localStorage.token),
+            },
+          })
+          .then((response) => {
+            this.loading = false;
+            for (var i = 0; i < this.Tareas.length; i++) {
+              if  (!this.Tareas[i].pending) {
+                  this.Tareas.pop(i);
+              }
+            }
+          })
+          .catch((err) => {
+            this.loading = false;
+            console.log(err);
+          })
+
+        }
+
+      }
       this.loading = true;
-      this.$http.delete('http://127.0.0.1:8000/tareas/' + id + '/', {
-          headers: {
-            "Authorization": "Token " + (localStorage.token),
-          },
-        })
-        .then((response) => {
-          this.loading = false;
-          this.getTareas();
-        })
-        .catch((err) => {
-          this.loading = false;
-          console.log(err);
-        })
-    }
+    },
   },
 });
