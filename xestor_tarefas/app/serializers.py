@@ -12,4 +12,4 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class notasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = notas
-        fields = ('url','id', 'description', 'pending', 'id_name')
+        fields = ('url','id', 'description', 'pending', 'nombre_id')
