@@ -9,3 +9,6 @@ class notas(models.Model):
     description = models.CharField(max_length = 30)
     pending = models.BooleanField(default = True)
     id_name = models.IntegerField(default = 1)
+
+    def __str__(self):
+        return (self.descpription)
