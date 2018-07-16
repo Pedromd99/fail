@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'rest_framework',
 ]
 
+ACCOUNT_ACTIVATION_DAYS = 7
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

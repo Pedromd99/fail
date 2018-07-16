@@ -20,18 +20,23 @@
       <h1>Xestor de tarefas</h1>
       <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" value="Añadir">
       <input type="button" class="btn btn-primary" @click="deleteTareas" value="Borrar todo" >
+      <a href="#"><span class="glyphicon" aria-hidden="true"></span></a>
+
       <table class="table">
         <thead>
 
           <tr>
-            <th scope="col">&emsp;&emsp;&emsp;&emsp;&emsp;Tareas</th>
+            <th></th>
+            <th scope="col">Tareas</th>
             <th scope="col">Borrar</th>
             <th scope="col">Editar</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="Tarea in Tareas">
-            <td>  <input @click="marcar(Tarea.id)" name="packersOff" class="strikethrough tt" value="1"  class="btn btn-primary" type="checkbox"> &emsp;   &nbsp; &nbsp; &nbsp;<label>{{Tarea.description}}</label></td>
+            <td ><input @click="marcar(Tarea)" name="packersOff" value="1" :checked='!Tarea.pending'
+                class="btn btn-primary" type="checkbox" :class="Tarea.pending"></td>
+            <td :class="{completed: !Tarea.pending}">  <label class="description">{{Tarea.description}}</label> </td>
             <td> <a @click="deleteTarea(Tarea.id)" href=""><i class="far fa-trash-alt"></i></a> </td>
             <td><button class="btn btn-primary" @click="getTarea(Tarea.id)" name="button">Editar</button></td>
           </tr>
@@ -58,7 +63,6 @@
               </form>
             </div>
           </div>
-          <div class="loading" v-if="loading===true">Loading&#8230;</div>
         </div>
       </div>
 
@@ -82,7 +86,6 @@
               </form>
             </div>
           </div>
-          <div class="loading" v-if="loading===true">Loading&#8230;</div>
         </div>
       </div>
 
