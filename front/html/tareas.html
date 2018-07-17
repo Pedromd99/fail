@@ -17,79 +17,80 @@
 
 <body>
   <div class="container" id='app'>
-      <h1>Xestor de tarefas</h1>
-      <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" value="Añadir">
-      <input type="button" class="btn btn-primary" @click="deleteTareas" value="Borrar todo" >
-      <a href="#"><span class="glyphicon" aria-hidden="true"></span></a>
-
-      <table class="table">
-        <thead>
-
-          <tr>
-            <th></th>
-            <th scope="col">Tareas</th>
-            <th scope="col">Borrar</th>
-            <th scope="col">Editar</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr v-for="Tarea in Tareas">
-            <td ><input @click="marcar(Tarea)" name="packersOff" value="1" :checked='!Tarea.pending'
-                class="btn btn-primary" type="checkbox" :class="Tarea.pending"></td>
-            <td :class="{completed: !Tarea.pending}">  <label class="description">{{Tarea.description}}</label> </td>
-            <td> <a @click="deleteTarea(Tarea.id)" href=""><i class="far fa-trash-alt"></i></a> </td>
-            <td><button class="btn btn-primary" @click="getTarea(Tarea.id)" name="button">Editar</button></td>
-          </tr>
-        </tbody>
-      </table>
+    <h5>
+      <a href="http://localhost/">LogOut-{{name}}</a>
+    </h5>
+    <h1>Xestor de tarefas</h1>
+    <input type="button" class="btn btn-primary" data-toggle="modal" data-target="#add" value="Añadir">
+    <input type="button" class="btn btn-primary" @click="deleteTareas" value="Borrar todo">
 
 
-      <div id="add" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title">Añadir Tarea</h1>
-            </div>
-            <div class="modal-body">
-              <form @submit.prevent="addTarea()">
-                <div class="form-group">
-                  <label for="tarea-name" class="col-form-lanel">Nueva tarea</label>
-                  <input type="text" class="form-control" v-model="newTarea.description"></input>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button class="btn btn-primary">Save</button>
-                </div>
-              </form>
-            </div>
+    <table class="table">
+      <thead>
+        <tr>
+          <th></th>
+          <th scope="col">Tareas</th>
+          <th scope="col">Borrar</th>
+          <th scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="Tarea in Tareas">
+          <td><input @click="marcar(Tarea)" name="packersOff" value="1" :checked='!Tarea.pending' class="btn btn-primary" type="checkbox" :class="Tarea.pending"></td>
+          <td :class="{completed: !Tarea.pending}"> <label class="description">{{Tarea.description}}</label> </td>
+          <td> <a @click="deleteTarea(Tarea.id)" href=""><i class="far fa-trash-alt"></i></a> </td>
+          <td><button class="btn btn-primary" @click="getTarea(Tarea.id)" name="button">Editar</button></td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <div id="add" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h1 class="modal-title">Añadir Tarea</h1>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="addTarea()">
+              <div class="form-group">
+                <label for="tarea-name" class="col-form-lanel">Nueva tarea</label>
+                <input type="text" class="form-control" v-model="newTarea.description"></input>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button class="btn btn-primary">Save</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
 
-      <div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-lg">
-          <div class="modal-content">
+    <div id="edit" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
 
-            <div class="modal-header">
-              <h1 class="modal-title">Editar Tarea</h1>
-            </div>
-            <div class="modal-body">
-              <form @submit.prevent="updateTarea(currentTarea.id)">
-                <div class="form-group" >
-                  <label for="tarea-name" class="col-form-lanel">Editar Tarea</label>
-                  <input type="text" v-model="currentTarea.description" class="form-control" id="add"></input>
-                </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="submit" class="btn btn-primary">Save</button>
-                </div>
-              </form>
-            </div>
+          <div class="modal-header">
+            <h1 class="modal-title">Editar Tarea</h1>
+          </div>
+          <div class="modal-body">
+            <form @submit.prevent="updateTarea(currentTarea.id)">
+              <div class="form-group">
+                <label for="tarea-name" class="col-form-lanel">Editar Tarea</label>
+                <input type="text" v-model="currentTarea.description" class="form-control" id="add"></input>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
+    </div>
 
-      <pre>{{ $data }}</pre>
+    <pre>{{ $data }}</pre>
   </div>
 
   <script src="js/tareas.js"></script>

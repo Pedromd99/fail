@@ -3,6 +3,7 @@ var vm = new Vue({
   data: {
     loading: false,
     Username: "",
+    Email_address: "",
     Password: "",
     Password_confirmation:"",
   },

@@ -2,6 +2,7 @@
 var vm = new Vue({
   el: '#app',
   data: {
+    // datos: [],
     Tareas: [],
     delTareas: [],
     currentTarea: {},
@@ -12,47 +13,31 @@ var vm = new Vue({
     loading: false,
     message: null,
     token: localStorage.token,
+    name: localStorage.name,
+    // local: localStorage.todo
   },
   mounted: function() {
     this.verify();
     this.getTareas();
+    this.getNombre();
   },
   methods: {
-    marcar: function(data) {
-      data.pending = !data.pending;
-
-      if (data.pending) {
-        this.loading = true;
-        this.$http.put('http://127.0.0.1:8000/tareas/' + data.id + '/', data, {
-          headers: {
-            "Authorization": "Token " + (localStorage.token),
-          },
-        })
-        .then((response) => {
-          this.loading = false;
-          this.currentTarea = response.data;
-        })
-        .catch((err) => {
-          this.loading = false;
-          console.log(err);
-        })
-      } else {
-        this.loading = true;
-        this.$http.put('http://127.0.0.1:8000/tareas/' + data.id + '/', data, {
-          headers: {
-            "Authorization": "Token " + (localStorage.token),
-          },
-        })
-        .then((response) => {
-          this.loading = false;
-          this.currentTarea = response.data;
-        })
-        .catch((err) => {
-          this.loading = false;
-          console.log(err);
-        })
-      }
-
+    getNombre: function () {
+      this.loading = true;
+      this.$http.get('http://127.0.0.1:8000/login/', {
+        headers: {
+          Authorization: "Token " + (localStorage.token),
+        },
+      })
+      .then((response) => {
+        this.datos = response.data.results;
+        console.log(this.datos);
+        this.loading = false
+      })
+      .catch((err) => {
+        this.loading = false;
+        console.log(err);
+      })
     },
 
     verify: function() {
@@ -62,6 +47,7 @@ var vm = new Vue({
         })
         .then((response) => {
           localStorage.token = response.data.token;
+
           // this.tareas = response.data;
           this.loading = false;
         })
@@ -190,6 +176,41 @@ var vm = new Vue({
           })
         }
       }
-    }
+    },
+    marcar: function(data) {
+      data.pending = !data.pending;
+
+      if (data.pending) {
+        this.loading = true;
+        this.$http.put('http://127.0.0.1:8000/tareas/' + data.id + '/', data, {
+          headers: {
+            "Authorization": "Token " + (localStorage.token),
+          },
+        })
+        .then((response) => {
+          this.loading = false;
+          this.currentTarea = response.data;
+        })
+        .catch((err) => {
+          this.loading = false;
+          console.log(err);
+        })
+      } else {
+        this.loading = true;
+        this.$http.put('http://127.0.0.1:8000/tareas/' + data.id + '/', data, {
+          headers: {
+            "Authorization": "Token " + (localStorage.token),
+          },
+        })
+        .then((response) => {
+          this.loading = false;
+          this.currentTarea = response.data;
+        })
+        .catch((err) => {
+          this.loading = false;
+          console.log(err);
+        })
+      }
+    },
   }
 });

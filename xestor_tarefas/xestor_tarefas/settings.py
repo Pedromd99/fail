@@ -41,9 +41,15 @@ INSTALLED_APPS = [
     'corsheaders',
     'rest_framework.authtoken',
     'rest_framework',
+    'registration'
 ]
 
 ACCOUNT_ACTIVATION_DAYS = 7
+EMAIL_HOST ='pmoradodiaz@gmail.com'
+EMAIL_HOST_USER =''
+EMAIL_HOST_PASSWORD =''
+EMAIL_PORT = 587
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

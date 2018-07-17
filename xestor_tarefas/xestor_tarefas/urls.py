@@ -23,6 +23,7 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify
 router = routers.DefaultRouter()
 router.register(r'login', views.UserViewSet)
 router.register(r'tareas', views.notasViewSet)
+# router.register(r'user', views.useViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
@@ -33,4 +34,6 @@ urlpatterns = [
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
+
+    # url(r'profile', views.UserViewSet.as_view()),
 ]
