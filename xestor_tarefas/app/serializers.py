@@ -5,8 +5,9 @@ from app.models import *
 
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
+
         model = User
-        fields = ('url', 'id', 'username', 'email', 'date_joined', 'first_name', 'last_name', 'password', 'last_login', 'is_staff')
+        fields = ('url', 'id', 'username', 'email', 'first_name', 'last_name', 'password', 'is_staff')
 
 
 class notasSerializer(serializers.HyperlinkedModelSerializer):
@@ -14,7 +15,13 @@ class notasSerializer(serializers.HyperlinkedModelSerializer):
         model = notas
         fields = ('url','id', 'description', 'pending', 'id_name')
 
-# class useSerializer(serializers.HyperlinkedModelSerializer):
-#     class Meta:
-#         model = notas
-#         fields = ('url', 'username', 'email', 'first_name', 'last_name')
+
+
+
+
+
+    # class useSerializer(serializers.HyperlinkedModelSerializer):
+    #         fields = ('url', 'username', 'email', 'first_name', 'last_name')
+    #     class Meta:
+
+    #         model = notas

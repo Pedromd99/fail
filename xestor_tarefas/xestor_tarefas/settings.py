@@ -37,11 +37,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'app',
-    'corsheaders',
     'rest_framework.authtoken',
     'rest_framework',
-    'registration'
+    'corsheaders',
+    'registration',
+    'app',
 ]
 
 ACCOUNT_ACTIVATION_DAYS = 7

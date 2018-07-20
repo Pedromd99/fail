@@ -29,7 +29,7 @@
         <div class="form">
           <div class="form-group col-sm-3">
             <label>Nombre</label>
-            <input required v-model="Username" type="usuario" class="form-control">
+            <input required type="usuario" class="form-control">
           </div>
           <!-- <div class="form-group col-sm-3">
             <label>Email</label>
@@ -37,17 +37,19 @@
           </div> -->
           <div class="form-group col-sm-3">
             <label>Contraseña</label>
-            <input required v-model="Password" type="password" class="form-control" autofocus autocomplete="">
+            <input required  type="password" class="form-control" autofocus autocomplete="">
           </div>
           <div class="form-group col-sm-3">
             <label>Confirmar Contraseña</label>
-            <input required v-model="Password_confirmation" type="password" class="form-control" autofocus autocomplete="">
+            <input required type="password" class="form-control" autofocus autocomplete="">
           </div>
           <div class="form-group col-sm-3">
             <button type="submit" class="btn btn-primary">Save</button>
           </div>
         </div>
       </form>
+
+      <pre>{{ $data }}</pre>
     </div>
 
     <script src="js/new_user.js"></script>

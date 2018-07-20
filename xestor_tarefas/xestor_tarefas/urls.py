@@ -21,9 +21,9 @@ from django.contrib.auth.models  import *
 from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify_jwt_token
 
 router = routers.DefaultRouter()
-router.register(r'login', views.UserViewSet)
 router.register(r'tareas', views.notasViewSet)
-# router.register(r'user', views.useViewSet)
+router.register(r'user', views.UserViewSet)
+# router.register(r'profile', views.ItemViewSet, 'as_view')
 
 urlpatterns = [
     url(r'^', include(router.urls)),
@@ -35,5 +35,5 @@ urlpatterns = [
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
 
-    # url(r'profile', views.UserViewSet.as_view()),
+    url(r'id', views.ItemViewSet.as_view()),
 ]
