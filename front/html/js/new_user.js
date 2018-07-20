@@ -10,23 +10,6 @@ var vm = new Vue({
     this.getDatos();
   },
   methods: {
-    getDatos: function () {
-      this.loading = true;
-      this.$http.get('http://127.0.0.1:8000/user/', {
-        headers: {
-          Authorization: "Token " + (localStorage.token),
-        },
-      })
-      .then((response) => {
-        this.loading = false;
-        console.log(response);
-        this.Datos = response.data;
-      })
-      .catch((response) => {
-        this.loading = false
-        console.log(err);
-      })
-    },
     postadd: function() {
       console.log(user, pass, pass_conf);
       this.loading = true;
