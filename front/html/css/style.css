@@ -1,3 +1,23 @@
 .completed .description {
   text-decoration:line-through
 }
+
+body{
+  background-image: url(imagenes/fondocolores.gif);
+
+  background-position: center center;
+
+  background-repeat: no-repeat;
+
+  background-attachment: fixed;
+
+  background-size: cover;
+}
+
+td {
+  color: white
+}
+
+th{
+  color: white
+}

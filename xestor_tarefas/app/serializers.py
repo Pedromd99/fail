@@ -7,21 +7,10 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
 
         model = User
-        fields = ('url', 'id', 'username', 'email', 'first_name', 'last_name', 'password', 'is_staff')
+        fields = ('url', 'id', 'username', 'email', 'first_name', 'last_name', 'password')
 
 
 class notasSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = notas
         fields = ('url','id', 'description', 'pending', 'id_name')
-
-
-
-
-
-
-    # class useSerializer(serializers.HyperlinkedModelSerializer):
-    #         fields = ('url', 'username', 'email', 'first_name', 'last_name')
-    #     class Meta:
-
-    #         model = notas

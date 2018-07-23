@@ -44,12 +44,6 @@ INSTALLED_APPS = [
     'app',
 ]
 
-ACCOUNT_ACTIVATION_DAYS = 7
-EMAIL_HOST ='pmoradodiaz@gmail.com'
-EMAIL_HOST_USER =''
-EMAIL_HOST_PASSWORD =''
-EMAIL_PORT = 587
-
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -121,6 +115,8 @@ JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
     'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
+    'JTW_PRIVATE_KEY': None,
+    'JTW_PUBLIC_KEY': True,
     'JWT_AUTH_HEADER_PREFIX': 'Token'
 }
 # Internationalization
@@ -153,10 +149,9 @@ REST_FRAMEWORK = {
 
     ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        # 'rest_framework.permissions.IsAuthenticated',
         'rest_framework_jwt.authentication.JSONWebTokenAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
+        # 'rest_framework.authentication.SessionAuthentication',
+        # 'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',

@@ -2,48 +2,38 @@ var vm = new Vue({
   el: '#app',
 
   data: {
-    Datos: [],
-    loading: false,
+    username:"",
+    email:"",
+    first_name:"",
+    last_name:"",
+    password:"",
+    // loading: false,
   },
   mounted: function() {
-    this.verify();
-    this.getDatos();
   },
   methods: {
-    postadd: function() {
-      console.log(user, pass, pass_conf);
-      this.loading = true;
-      this.$http.post('http://127.0.0.1:8000/user/',{}, {
-        headers: {
-          Authorization: "Token " + (localStorage.token),
-        },
-      })
+    register: function() {
+      var user = (this.username);
+      var pass = (this.password);
+      var pass_conf = (this.password_confirmation);
+      var email = (this.email);
+      var fn = (this.first_name);
+      var ln = (this.last_name);
+
+      console.log(user, pass, email, fn, ln);
+      // this.loading = true;
+      this.$http.post('http://127.0.0.1:8000/user/', {username: user, password: pass, email: email, first_name: fn, last_name: ln})
       .then((response) => {
-        this.loading = false;
         console.log(response);
-        window.location.replace("index.html");
+        this.loading = false;
+        console.log(OK);
+        // window.location.replace("tareas.html");
       })
       .catch((err) => {
         this.loading = false;
         console.log(err);
+        console.log('Fail');
       })
-    },
-    verify: function() {
-      this.loading = true;
-      this.$http.post('http://127.0.0.1:8000/api-token-verify/', {
-          token: localStorage.token
-        })
-        .then((response) => {
-          localStorage.token = response.data.token;
-
-          // this.tareas = response.data;
-          this.loading = false;
-        })
-        .catch((err) => {
-          this.loading = false;
-          window.location.replace("/");
-          console.log(err);
-        })
     },
   },
 })

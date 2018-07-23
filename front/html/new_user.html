@@ -13,7 +13,7 @@
     <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script> -->
-
+    <link rel="stylesheet" href="css/new.css">
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
     <meta name="description" content="The HTML5 Herald">
     <meta name="author" content="SitePoint">
@@ -21,35 +21,65 @@
   </head>
 
   <body>
-    <div class="container" id="app">
-      <br>
-      <h1 class="form-group col-sm-3"><u>Register</u></h1>
-      <br>
-      <form class="Register-form" @submit.prevent="postadd">
-        <div class="form">
-          <div class="form-group col-sm-3">
-            <label>Nombre</label>
-            <input required type="usuario" class="form-control">
-          </div>
-          <!-- <div class="form-group col-sm-3">
-            <label>Email</label>
-            <input required v-model="Email" type="email" class="form-control">
-          </div> -->
-          <div class="form-group col-sm-3">
-            <label>Contraseña</label>
-            <input required  type="password" class="form-control" autofocus autocomplete="">
-          </div>
-          <div class="form-group col-sm-3">
-            <label>Confirmar Contraseña</label>
-            <input required type="password" class="form-control" autofocus autocomplete="">
-          </div>
-          <div class="form-group col-sm-3">
-            <button type="submit" class="btn btn-primary">Save</button>
-          </div>
-        </div>
-      </form>
+    <div id="app">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"><i class="fas fa-tasks"></i>Xestor de Tarefas</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link"><span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link"></a>
+            </li>
 
-      <pre>{{ $data }}</pre>
+          </ul>
+          <form class="form-inline my-2 my-lg-0">
+            <a href="index.html" class="btn btn-outline-light my-3 my-sm-1">Login</a>
+          </form>
+        </div>
+      </nav>
+      <div class="container">
+        <br>
+
+        <br>
+        <form class="Register-form" @submit.prevent="register">
+          <div class="form">
+            <div class="form-group col-sm-3">
+              <label>Usuario</label>
+              <input required v-model="username" type="usuario" class="form-control">
+            </div>
+            <div class="form-group col-sm-3">
+              <label>Email</label>
+              <input required v-model="email" type="email" class="form-control">
+            </div>
+            <div class="form-group col-sm-3">
+              <label>Contraseña</label>
+              <input required v-model="password" type="password" class="form-control" autofocus autocomplete="">
+            </div>
+            <div class="form-group col-sm-3">
+              <label>Confirmar Contraseña</label>
+              <input required v-model="password" type="password" class="form-control" autofocus autocomplete="">
+            </div>
+            <div class="form-group col-sm-3">
+              <label>Nombre</label>
+              <input required type="first_name" class="form-control">
+            </div>
+            <div class="form-group col-sm-3">
+              <label>Apellido</label>
+              <input required type="las_name" class="form-control">
+            </div>
+
+            <div class="form-group col-sm-3">
+              <button type="submit" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </form>
+        <!-- <pre>{{ $data }}</pre> -->
+      </div>
     </div>
 
     <script src="js/new_user.js"></script>
