@@ -13,3 +13,20 @@ class notas(models.Model):
 
     def __str__(self):
         return (self.descpription)
+
+class register(models.Model):
+
+    id = models.AutoField (primary_key = True)
+    username = models.CharField(max_length = 30)
+    email = models.CharField(max_length = 30)
+    password = models.CharField(max_length = 30)
+    first_name = models.CharField(max_length = 30)
+    last_name = models.CharField(max_length = 30)
+    is_staff = models.BooleanField(default = True)
+
+
+class change_pass(models.Model):
+
+    id = models.AutoField (primary_key = True)
+    old_password = models.CharField(max_length = 30)
+    new_password = models.CharField(max_length = 30)

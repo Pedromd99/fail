@@ -1,6 +1,9 @@
 var vm = new Vue({
   el: '#app',
   data: {
+    old_pass:"",
+    new_pass:"",
+    repeat_pass:"",
     Datos: {},
     Tareas: [],
     newTarea: {
@@ -11,7 +14,6 @@ var vm = new Vue({
     currentTarea: {},
     delTareas: [],
     loading: false,
-    message: null,
     token: localStorage.token,
     name: localStorage.name,
     // local: localStorage.todo
@@ -22,6 +24,24 @@ var vm = new Vue({
     this.getTareas();
   },
   methods: {
+    change_pass: function () {
+      loading: true,
+      this.$http.post('http://127.0.0.1:8000/change/', this.password , {
+        headers: {
+          Authorization: "Token " + (localStorage.token)
+        },
+      })
+      .then((response) => {
+        loading: false,
+        console.log(response);
+        this.Datos = response
+      })
+      .catch((err) => {
+        loading: false,
+        console.log(err);
+      })
+    },
+
     rellenar: function() {
       this.newTarea.id_name = this.Datos.id
     },
@@ -42,12 +62,6 @@ var vm = new Vue({
           this.Datos = response.data[0];
           localStorage.id = this.Datos.id
           this.id = localStorage.id
-          // this.Usuario = this.Datos[0]
-          // $("#edit").modal('show');
-
-          // this.newTarea.push(localStorage.id)
-
-          this.loading = false
         })
         .catch((err) => {
           this.loading = false;

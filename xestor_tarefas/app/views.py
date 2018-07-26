@@ -11,31 +11,17 @@ from django.contrib.auth.models import User
 from rest_framework import viewsets
 from app.serializers import *
 
-from django.contrib.auth.forms import UserCreationForm
-from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
-
 from rest_framework.request import Request
-from django.utils.functional import SimpleLazyObject
-from django.contrib.auth.middleware import get_user
-from rest_framework.permissions import IsAuthenticated
-
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from django.http import HttpResponse
 from django.views import View
+from rest_framework import mixins
+from rest_framework.decorators import authentication_classes, permission_classes
+from rest_framework.permissions import AllowAny
+from django.contrib.auth.password_validation import validate_password
 
-class ItemViewSet(View):
-    model = User
-
-    def get(self, request):
-        print(request.user.id)
-        return HttpResponse(User.objects.filter(id = request.user.id))
-        # return HttpResponse("Manolooo")
-    # queryset = User.objects.filter(id = request.user.id)
-    serializer_class = UserSerializer
 
 class UserViewSet(viewsets.ModelViewSet):
 
@@ -47,10 +33,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
         serializer = UserSerializer(queryset, many=True, context={'request': self.request})
         return Response(serializer.data)
-    # def get_serializer_context(self):
-    #     return {'request': self.request}
-
-
 
 class notasViewSet(viewsets.ModelViewSet):
 
@@ -62,3 +44,35 @@ class notasViewSet(viewsets.ModelViewSet):
 
         serializer = notasSerializer(queryset, many=True, context={'request': self.request})
         return Response(serializer.data)
+
+
+class registerViewSet(viewsets.ModelViewSet):
+
+    queryset = register.objects.all()
+    serializer_class = registerSerializer
+
+class PasswordViewSet(viewsets.ModelViewSet):
+
+    queryset = change_pass.objects.all()
+    serializer_class = PasswordSerializer
+
+
+    def get_object(self, queryset=None):
+        return self.request.user
+
+    def put(self, request, *args, **kwargs):
+        self.object = self.get_object()
+        serializer = ChangePasswordSerializer(data=request.data)
+
+        if serializer.is_valid():
+            # Check old password
+            old_password = serializer.data.get("old_password")
+            if not self.object.check_password(old_password):
+                return Response({"old_password": ["Wrong password."]},
+                                status=status.HTTP_400_BAD_REQUEST)
+            # set_password also hashes the password that the user will get
+            self.object.set_password(serializer.data.get("new_password"))
+            self.object.save()
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
