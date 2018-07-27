@@ -2,13 +2,13 @@ var vm = new Vue({
   el: '#app',
 
   data: {
-    username:"",
-    email:"",
-    first_name:"",
-    last_name:"",
-    password:"",
-    password2:"",
-    is_staff:false,
+    username:"dddd",
+    email:"sebaspete123@gmail.com",
+    first_name:"eeeee",
+    last_name:"ffgfg",
+    password:"1234qwer",
+    password2:"1234qwer",
+    is_staff:true,
     // loading: false,
   },
   mounted: function() {
@@ -29,8 +29,9 @@ var vm = new Vue({
           alert("La contraseña no coinciden")
           return false;
         } else {
-        window.location.replace("tareas.html");
-        return true;
+          alert('Account created')
+          window.location.replace("tareas.html");
+          return true;
         }
 
 

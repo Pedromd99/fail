@@ -1,10 +1,10 @@
 var vm = new Vue({
   el: '#app',
   data: {
-    old_pass:"",
-    new_pass:"",
-    repeat_pass:"",
-    Datos: {},
+    password: '',
+    password2: '',
+    currentUser: {},
+    User: {},
     Tareas: [],
     newTarea: {
       'description': null,
@@ -19,38 +19,44 @@ var vm = new Vue({
     // local: localStorage.todo
   },
   mounted: function() {
-    this.getDatos();
+    this.getUser();
     this.verify();
     this.getTareas();
   },
   methods: {
-    change_pass: function () {
-      loading: true,
-      this.$http.post('http://127.0.0.1:8000/change/', this.password , {
-        headers: {
-          Authorization: "Token " + (localStorage.token)
-        },
-      })
-      .then((response) => {
-        loading: false,
-        console.log(response);
-        this.Datos = response
-      })
-      .catch((err) => {
-        loading: false,
-        console.log(err);
-      })
+    change_pass: function() {
+      var pass = (this.User.password);
+      var pass2 = (this.password);
+      this.$http.put('http://127.0.0.1:8000/user/' + this.User.id + '/', {
+          password: pass
+        }, {
+          headers: {
+            Authorization: "Token " + (localStorage.token)
+          },
+        })
+        .then((response) => {
+          if (this.User.password != this.password2) {
+            alert("La contraseña no coinciden")
+            return false;
+          } else {
+            this.User = response
+            return true;
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
     },
 
     rellenar: function() {
-      this.newTarea.id_name = this.Datos.id
+      this.newTarea.id_name = this.User.id
     },
 
     clearLS: function() {
       localStorage.clear();
     },
 
-    getDatos: function() {
+    getUser: function() {
 
       this.loading = true;
       this.$http.get('http://127.0.0.1:8000/user/', {
@@ -59,8 +65,8 @@ var vm = new Vue({
           },
         })
         .then((response) => {
-          this.Datos = response.data[0];
-          localStorage.id = this.Datos.id
+          this.User = response.data[0];
+          localStorage.id = this.User.id
           this.id = localStorage.id
         })
         .catch((err) => {
@@ -133,7 +139,6 @@ var vm = new Vue({
         .then((response) => {
           this.loading = false;
           this.Tareas.push(response.data);
-          this.newTarea.description = "";
           this.newTarea.description = "";
           $('#add').modal('hide');
 

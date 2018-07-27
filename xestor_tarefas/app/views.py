@@ -49,30 +49,4 @@ class notasViewSet(viewsets.ModelViewSet):
 class registerViewSet(viewsets.ModelViewSet):
 
     queryset = register.objects.all()
-    serializer_class = registerSerializer
-
-class PasswordViewSet(viewsets.ModelViewSet):
-
-    queryset = change_pass.objects.all()
-    serializer_class = PasswordSerializer
-
-
-    def get_object(self, queryset=None):
-        return self.request.user
-
-    def put(self, request, *args, **kwargs):
-        self.object = self.get_object()
-        serializer = ChangePasswordSerializer(data=request.data)
-
-        if serializer.is_valid():
-            # Check old password
-            old_password = serializer.data.get("old_password")
-            if not self.object.check_password(old_password):
-                return Response({"old_password": ["Wrong password."]},
-                                status=status.HTTP_400_BAD_REQUEST)
-            # set_password also hashes the password that the user will get
-            self.object.set_password(serializer.data.get("new_password"))
-            self.object.save()
-            return Response(status=status.HTTP_204_NO_CONTENT)
-
-        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    serializer_class = registerSerializer()
