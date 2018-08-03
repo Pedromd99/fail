@@ -44,7 +44,7 @@
         <form @submit.prevent="register">
           <div class="form">
             <div class="form-group col-sm-3">
-              <label>Usuario</label>
+              <label>Username</label>
               <input required v-model="username" type="usuario" class="form-control">
             </div>
             <div class="form-group col-sm-5">
@@ -52,23 +52,23 @@
               <input required v-model="email" type="email" class="form-control">
             </div>
             <div class="form-group col-sm-3">
-              <label>Contraseña</label>
+              <label>Password</label>
               <input required v-model="password" type="password" class="form-control" autofocus autocomplete="">
             </div>
             <div class="form-group col-sm-3">
-              <label>Confirmar Contraseña</label>
+              <label>Password Confirmed</label>
               <input required type="password" v-model="password2" class="form-control" autofocus autocomplete="">
             </div>
             <div class="form-group col-sm-3">
-              <label>Nombre</label>
+              <label>First Name</label>
               <input required v-model="first_name" type="first_name" class="form-control">
             </div>
             <div class="form-group col-sm-3">
-              <label>Apellido</label>
+              <label>Last Nanme</label>
               <input required v-model="last_name" type="last_name" class="form-control">
             </div>
             <div class="form-group col-sm-3">
-              <label><input required v-model="is_staff" type="checkbox"> Aceptar</label>
+              <label><input required v-model="is_staff" type="checkbox"> Checked</label>
             </div>
             <div class="form-group col-sm-3">
               <button type="submit" class="btn btn-primary">Save</button>

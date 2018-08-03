@@ -23,14 +23,14 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify
 router = routers.DefaultRouter()
 router.register(r'tareas', views.notasViewSet)
 router.register(r'user', views.UserViewSet)
-router.register(r'register', views.registerViewSet)
+# router.register(r'password', views.change_passViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
     url(r'^admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls')),
-    # url(r'^password/', views.Password.as_view()),
-
+    url(r'^form/', views.valoresViewSet.as_view()),
+    url(r'^password/', views.change_passViewSet.as_view()),
 
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),

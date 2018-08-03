@@ -24,28 +24,64 @@ var vm = new Vue({
     this.getTareas();
   },
   methods: {
-    change_pass: function() {
+    change_data: function () {
+      var ln = (this.User.last_name);
+      var fn = (this.User.first_name);
       var pass = (this.User.password);
+      var usu = (this.User.username);
+      var email = (this.User.email);
       var pass2 = (this.password);
+
+
       this.$http.put('http://127.0.0.1:8000/user/' + this.User.id + '/', {
-          password: pass
+          first_name: fn, last_name: ln, password: pass, username: usu, email: email,
         }, {
           headers: {
             Authorization: "Token " + (localStorage.token)
           },
         })
         .then((response) => {
-          if (this.User.password != this.password2) {
-            alert("La contraseña no coinciden")
-            return false;
-          } else {
-            this.User = response
-            return true;
-          }
+          console.log('ok');
+          console.log(response);
+          $('#name').modal('hide');
         })
         .catch((err) => {
           console.log(err);
         })
+    },
+
+
+    change_pass: function() {
+      var pass = (this.password);
+      var pass2 = (this.password2);
+      var ln = (this.User.last_name);
+      var fn = (this.User.first_name);
+      var usu = (this.User.username);
+      var email = (this.User.email);
+      console.log(pass, ln, fn, usu, email);
+      if (this.password != this.password2) {
+        alert("La contraseña no coinciden")
+        return false;
+      } else {
+        this.$http.put('http://127.0.0.1:8000/password/' + this.User.id + '/', {
+           password: pass ,first_name: fn, last_name: ln, username: usu, email: email
+          }, {
+            headers: {
+              Authorization: "Token " + (localStorage.token)
+            },
+          })
+          .then((response) => {
+
+            console.log('ok');
+            console.log(response);
+            $('#change').modal('hide');
+            return true;
+          })
+          .catch((err) => {
+            console.log(err);
+          })
+      }
+
     },
 
     rellenar: function() {
@@ -156,7 +192,7 @@ var vm = new Vue({
           },
         })
         .then((response) => {
-          this.loading = false;
+          console.log(response);
           this.getTareas();
           $('#edit').modal('hide');
         })
