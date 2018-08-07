@@ -113,7 +113,7 @@ DATABASES = {
 
 JWT_AUTH = {
     'JWT_ALLOW_REFRESH': True,
-    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=1),
+    'JWT_EXPIRATION_DELTA': datetime.timedelta(hours=8),
     'JWT_REFRESH_EXPIRATION_DELTA': datetime.timedelta(days=7),
     'JTW_PRIVATE_KEY': None,
     'JTW_PUBLIC_KEY': None,

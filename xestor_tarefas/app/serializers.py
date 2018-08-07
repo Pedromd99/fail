@@ -22,4 +22,3 @@ class passwordSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
         fields = ('url', 'id', 'password')
-        

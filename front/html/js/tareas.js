@@ -54,9 +54,9 @@ var vm = new Vue({
     change_pass: function() {
       var pass = (this.password);
       var pass2 = (this.password2);
+      var usu = (this.User.username);
       var ln = (this.User.last_name);
       var fn = (this.User.first_name);
-      var usu = (this.User.username);
       var email = (this.User.email);
       console.log(pass, ln, fn, usu, email);
       if (this.password != this.password2) {
