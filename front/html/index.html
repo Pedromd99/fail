@@ -12,7 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
 
-
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
@@ -40,22 +39,24 @@
         <hr>
         <br><br><br><br><br><br><br>
         <form class="arriba login-form" @submit.prevent="postapi">
-          <div class="form-group justify-content-around">
-            <div class="form-group col-md-2 offset-md-4">
-              <label>Username</label>
-              <input required v-model="username" type="username" class="form-control">
+          <!-- <div class="form-group justify-content-around"> -->
+            <div class="form-group col-sm-3 offset-md-4">
+              <label>Username</labelbackground-photol>
+              <input required v-model="username" type="text" class="form-control">
             </div>
 
-            <div class="form-group col-md-2 offset-md-4">
+            <div class="form-group col-sm-3 offset-md-4">
               <label>Password</labebackground-photol>
               <input required v-model="password" type="password" class="form-control" autocomplete>
             </div>
-
+            <div class="form-group col-md offset-md-4">
+              <a href="reset_pass.html">Olvidaste la contraseña?</a>
+            </div>
             <div class="form-group col-md-3 offset-md-4">
               <button type="submit" class="btn btn-light">Login</button>
             </div>
 
-          </div>
+          <!-- </div> -->
         </form>
       </div>
     </div>

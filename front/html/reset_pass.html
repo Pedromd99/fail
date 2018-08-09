@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="author" content="SitePoint">
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
+
+  <link rel="stylesheet" href="css/reset_pass.css">
+</head>
+
+<body>
+  <div id="app">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a class="navbar-brand" href="#"><i class="fas fa-tasks"></i>Xestor de Tarefas</a>
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link"><span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item active">
+          <a class="nav-link"></a>
+        </li>
+      </ul>
+      <form class="form-inline my-2 my-lg-0">
+        <a href="new_user.html" class="btn btn-outline-light my-3 my-sm-1">Register</a>
+      </form>
+    </nav>
+    <div class="container">
+      <br><br><br>
+      <form>
+        <div class="form-group col-sm-8 offset-md-4">
+          <p>Ingrese su correo electrónico y le enviarémos las instrucciones para recuperar su contraseña</p>
+          <label>Email</label>
+          <input class="form-control" type="text">
+          <br>
+          <div class="form-group">
+            <button type="button" class="btn btn-primary" name="button">Send</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="js/reset_pass.js"></script>
+</body>
+
+</html>

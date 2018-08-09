@@ -31,9 +31,12 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^form/', views.valoresViewSet.as_view()),
     url(r'^password/', views.change_passViewSet.as_view()),
+    # url(r'^reset_pass/', view.reset_passViewSet.as_view()),
 
+    url(r'^auth/', include('djoser.urls')),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
 
+    
 ]

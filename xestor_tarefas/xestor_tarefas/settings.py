@@ -37,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
     'rest_framework.authtoken',
     'rest_framework',
+    'djoser',
     'corsheaders',
     'registration',
     'app',
@@ -62,7 +64,7 @@ ROOT_URLCONF = 'xestor_tarefas.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -138,9 +140,33 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# LOGIN_REDIRECT_URL= reverse_lazy('adopcion:solicitud_listar')
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'peepgalaxia11@gmail.com'
+EMAIL_HOST_PASSWORD = 'Pedromd99'
+# DJOSER = {
+# 'DOMAIN': 'localhost:4200',
+#  'SITE_NAME': 'TodoBirds',
+#  'PASSWORD_RESET_CONFIRM_URL': 'password_reset_confirm/{uid}/{token}',
+#  'PASSWORD_RESET_CONFIRM_RETYPE': True,
+#  'SET_USERNAME_RETYPE': True,
+#  'LOGOUT_ON_PASSWORD_CHANGE': True,
+#  'ACTIVATION_URL': 'activate/{uid}/{token}',
+#  'SEND_ACTIVATION_EMAIL': True,
+#  'SEND_CONFIRMATION_EMAIL': True,
+#  'PASSWORD_VALIDATORS': [],
+#  'SERIALIZERS': {'user':'app.serializers.UserSerializer'},
+# }
+
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
+        # 'rest_framework.permissions.IsAuthenticated',
     ),
     'DEFAULT_RENDERER_CLASSES': (
         'rest_framework.renderers.JSONRenderer',

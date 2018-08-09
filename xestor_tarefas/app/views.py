@@ -28,6 +28,17 @@ from passlib.hash import pbkdf2_sha256
 from django.contrib.auth import update_session_auth_hash
 from .models import User
 
+from django.shortcuts import render
+from django.http import HttpResponseRedirect
+from django.core.mail import send_mail
+
+from .forms import ContactForm
+
+class reset_passViewSet(APIView):
+
+    pass
+
+
 class UserViewSet(viewsets.ModelViewSet):
 
     queryset = User.objects.all()
@@ -35,18 +46,13 @@ class UserViewSet(viewsets.ModelViewSet):
 
     def list(self, request):
         queryset = User.objects.filter(id = request.user.id)
-
         serializer = UserSerializer(queryset, many=True, context={'request': self.request})
         return Response(serializer.data)
 
 class change_passViewSet(APIView):
-
-    #queryset = User.objects.(id=request.user.id)
     serializer_class = passwordSerializer()
-
     def get_object(self, queryset=None):
         return self.request.user
-
     def put(self, request, *args, **kwargs):
         u = User.objects.get(id = request.user.id)
         u.set_password(request.data['password'])
@@ -54,13 +60,10 @@ class change_passViewSet(APIView):
         return HttpResponse(status=200)
 
 class notasViewSet(viewsets.ModelViewSet):
-
     queryset = notas.objects.filter()
     serializer_class = notasSerializer
-
     def list(self, request):
         queryset = notas.objects.filter(id_name = request.user.id)
-
         serializer = notasSerializer(queryset, many=True, context={'request': self.request})
         return Response(serializer.data)
 
