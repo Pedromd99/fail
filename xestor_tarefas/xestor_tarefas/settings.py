@@ -40,10 +40,11 @@ INSTALLED_APPS = [
     'bootstrapform',
     'rest_framework.authtoken',
     'rest_framework',
-    'djoser',
     'corsheaders',
     'registration',
     'app',
+    'password_reset',
+    'mail_templated',
 ]
 
 
@@ -91,7 +92,7 @@ DATABASES = {
         'PASSWORD': '123456',
         'HOST': '127.0.0.1',
         'PORT': '3306',
-        }
+    }
 }
 
 
@@ -142,26 +143,12 @@ STATIC_URL = '/static/'
 
 # LOGIN_REDIRECT_URL= reverse_lazy('adopcion:solicitud_listar')
 
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
-
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'peepgalaxia11@gmail.com'
 EMAIL_HOST_PASSWORD = 'Pedromd99'
-# DJOSER = {
-# 'DOMAIN': 'localhost:4200',
-#  'SITE_NAME': 'TodoBirds',
-#  'PASSWORD_RESET_CONFIRM_URL': 'password_reset_confirm/{uid}/{token}',
-#  'PASSWORD_RESET_CONFIRM_RETYPE': True,
-#  'SET_USERNAME_RETYPE': True,
-#  'LOGOUT_ON_PASSWORD_CHANGE': True,
-#  'ACTIVATION_URL': 'activate/{uid}/{token}',
-#  'SEND_ACTIVATION_EMAIL': True,
-#  'SEND_CONFIRMATION_EMAIL': True,
-#  'PASSWORD_VALIDATORS': [],
-#  'SERIALIZERS': {'user':'app.serializers.UserSerializer'},
-# }
 
 
 REST_FRAMEWORK = {

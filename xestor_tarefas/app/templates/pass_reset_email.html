@@ -1,0 +1,14 @@
+{% extends "base.tpl" %}
+
+{% block subject %}
+Reset pass
+{% endblock %}
+
+{% block html %}
+
+<h1 style="font-size: 1.5em; line-height: 2em;">Cordial saludo {{ User.first_name }}</h1>
+<p>Enviamos este mensaje para restablecer su contraseña. Haga clic en el siguiente enlace:</p>
+<p><a href='http://localhost/pass_reset_confirm.html?id={{User.id}}'>New password</a></p>
+<p>Su correo electrónico registrado es:<b> {{ User.email }}</b></p>
+
+{% endblock %}

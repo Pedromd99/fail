@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 """xestor_tarefas URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -23,7 +24,6 @@ from rest_framework_jwt.views import obtain_jwt_token, refresh_jwt_token, verify
 router = routers.DefaultRouter()
 router.register(r'tareas', views.notasViewSet)
 router.register(r'user', views.UserViewSet)
-# router.register(r'password', views.change_passViewSet)
 
 urlpatterns = [
     url(r'^', include(router.urls)),
@@ -31,12 +31,11 @@ urlpatterns = [
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^form/', views.valoresViewSet.as_view()),
     url(r'^password/', views.change_passViewSet.as_view()),
-    # url(r'^reset_pass/', view.reset_passViewSet.as_view()),
+    url(r'^send_mail/',views.sendViewSet.as_view()),
+    url(r'^reset/', views.reset_passViewSet.as_view()),
 
-    url(r'^auth/', include('djoser.urls')),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
     url(r'^api-token-verify/', verify_jwt_token),
 
-    
 ]

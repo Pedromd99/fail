@@ -14,7 +14,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
-  <link rel="stylesheet" href="css/reset_pass.css">
+  <link rel="stylesheet" href="css/pass_reset_form.css">
 </head>
 
 <body>
@@ -29,27 +29,23 @@
           <a class="nav-link"></a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <a href="new_user.html" class="btn btn-outline-light my-3 my-sm-1">Register</a>
-      </form>
     </nav>
     <div class="container">
       <br><br><br>
-      <form>
-        <div class="form-group col-sm-8 offset-md-4">
+      <form @submit.prevent="send_mail()">
+        <div class="form-group col-sm-4 offset-md-4">
           <p>Ingrese su correo electrónico y le enviarémos las instrucciones para recuperar su contraseña</p>
           <label>Email</label>
-          <input class="form-control" type="text">
-          <br>
-          <div class="form-group">
-            <button type="button" class="btn btn-primary" name="button">Send</button>
-          </div>
+          <input v-model="email" class="form-control" type="text">
+        <br>
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">Send</button>
+        </div>
         </div>
       </form>
     </div>
   </div>
-
-  <script src="js/reset_pass.js"></script>
+  <script src="js/pass_reset_form.js"></script>
 </body>
 
 </html>

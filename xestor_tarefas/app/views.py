@@ -16,7 +16,6 @@ from rest_framework import viewsets, status
 from rest_framework.parsers import JSONParser
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.http import HttpResponse
 from app.serializers import *
 from django.views import View
 from rest_framework import mixins
@@ -27,17 +26,33 @@ from django.contrib.auth.hashers import make_password, check_password
 from passlib.hash import pbkdf2_sha256
 from django.contrib.auth import update_session_auth_hash
 from .models import User
-
-from django.shortcuts import render
-from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
+from django.template.loader import render_to_string, get_template
+from django.core.mail import EmailMessage
+from mail_templated import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.template import Context
+from django.utils import timezone
 
-from .forms import ContactForm
+from django.shortcuts import get_object_or_404, render
+from django.http import HttpResponseRedirect, HttpResponse
+from django.urls import reverse
+from django.template import loader
+from django.views import generic
+from django.utils.encoding import smart_str
+from django.shortcuts import redirect
 
-class reset_passViewSet(APIView):
-
-    pass
-
+# User = get_user_model()
+#
+# def get_password_reset_token_expiry_time():
+#     """
+#     Returns the password reset token expirty time in hours (default: 24)
+#     Set Django SETTINGS.DJANGO_REST_MULTITOKENAUTH_RESET_TOKEN_EXPIRY_TIME to overwrite this time
+#     :return: expiry time
+#     """
+#     # get token validation time
+#     return getattr(settings, 'DJANGO_REST_MULTITOKENAUTH_RESET_TOKEN_EXPIRY_TIME', 24)
+#
 
 class UserViewSet(viewsets.ModelViewSet):
 
@@ -78,4 +93,31 @@ class valoresViewSet(APIView):
         register = User(username = datos['username'], first_name = datos['first_name'], last_name = datos['last_name'], is_staff = datos['is_staff'], email = datos['email'])
         register.set_password(password)
         register.save()
+        return HttpResponse(status=200)
+
+
+class sendViewSet(APIView):
+
+    def post(self, request):
+        to = request.data['email']
+        user = User.objects.get(email = request.data['email'])
+        qs = User.objects.filter(username = user)
+        id = user.id
+        send_mail(
+        'pass_reset_email.html',
+        {'User' :  user},
+        'peepgalaxia11@gmail.com', #FROM
+        [to],
+        subject='Reset Password',
+        )
+        return HttpResponse(status=200)
+class reset_passViewSet(APIView):
+    serializer_class = passwordSerializer()
+
+    def put(self, request, *args, **kwargs):
+        id = request.data['id']
+        print(id)
+        u = User.objects.get(id = id)
+        u.set_password(request.data['password'])
+        u.save()
         return HttpResponse(status=200)

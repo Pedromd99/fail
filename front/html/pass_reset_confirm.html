@@ -6,6 +6,7 @@
   <meta name="description" content="The HTML5 Herald">
   <meta name="author" content="SitePoint">
 
+  <script src="https://ajax.googleapis.com/ajax/libs/ext-core/3.1.0/ext-core.js"></script>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
@@ -14,7 +15,7 @@
   <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue-resource@1.5.1"></script>
 
-  <link rel="stylesheet" href="css/reset_pass.css">
+  <link rel="stylesheet" href="css/pass_reset_confirm.css">
 </head>
 
 <body>
@@ -29,23 +30,31 @@
           <a class="nav-link"></a>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <a href="new_user.html" class="btn btn-outline-light my-3 my-sm-1">Register</a>
-      </form>
     </nav>
     <div class="container">
       <br><br><br>
-      <form>
-        <div class="form-group col-sm-8 offset-md-4">
-          
-          <div class="form-group">
-          </div>
+      <center>
+        <h3>Restablecer contraseña.</h3>
+      </center>
+      <br>
+      <form @submit.prevent="new_pass()">
+        <div class="form-group col-sm-3 offset-md-4">
+          <label class="col-form-lanel">New password</label>
+          <input required autocomplete type="password" v-model="password" class="form-control">
+        </div>
+        <div class="form-group col-sm-3 offset-md-4">
+          <label class="col-form-lanel">Repeat password</label>
+          <input required autocomplete type="password" v-model="password2" class="form-control">
+        </div>
+        <div class="form-group col-sm-3 offset-md-4">
+          <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
+      <canvas id="canvas" width="5" height="5"></canvas>
     </div>
   </div>
 
-  <script src="js/reset_pass.js"></script>
+  <script src="js/pass_reset_confirm.js"></script>
 </body>
 
 </html>
