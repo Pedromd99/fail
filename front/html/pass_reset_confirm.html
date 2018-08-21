@@ -36,21 +36,24 @@
       <center>
         <h3>Restablecer contraseña.</h3>
       </center>
+
       <br>
       <form @submit.prevent="new_pass()">
-        <div class="form-group col-sm-3 offset-md-4">
+        <div class="form-group col-sm-6 offset-md-3">
           <label class="col-form-lanel">New password</label>
           <input required autocomplete type="password" v-model="password" class="form-control">
         </div>
-        <div class="form-group col-sm-3 offset-md-4">
+        <div class="form-group col-sm-6 offset-md-3">
           <label class="col-form-lanel">Repeat password</label>
           <input required autocomplete type="password" v-model="password2" class="form-control">
         </div>
-        <div class="form-group col-sm-3 offset-md-4">
+        <div class="form-group col-sm-6 offset-md-3" id="alert_placeholder">
+
+        </div>
+        <div class="form-group col-sm-6 offset-md-3">
           <button type="submit" class="btn btn-primary">Save</button>
         </div>
       </form>
-      <canvas id="canvas" width="5" height="5"></canvas>
     </div>
   </div>
 

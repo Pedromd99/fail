@@ -9,10 +9,10 @@ var vm = new Vue({
         email: this.email
       })
       .then((response) => {
-        window.location.replace("pass_reset_done.html");
+          window.location.replace("pass_reset_done.html");
       })
       .catch((err) => {
-        console.log(err);
+        window.location.replace("pass_reset_done.html");
       })
     },
   }

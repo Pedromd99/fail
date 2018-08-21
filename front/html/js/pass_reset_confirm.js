@@ -14,7 +14,8 @@ var vm = new Vue({
       var id = (urlParams.get('id'))
       console.log(id);
       if (pass != pass2) {
-        alert('La contraseña no coincide')
+        $('#clickme').on('click')
+        $('#alert_placeholder').html('<div class="alert alert-danger"><span>"La dirección de correo electrónico no existe"</span></div>')
         return false;
       } else {
         this.$http.put('http://127.0.0.1:8000/reset/' + urlParams.get('id') + '/',

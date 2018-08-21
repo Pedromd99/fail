@@ -50,22 +50,14 @@ var vm = new Vue({
     },
 
     change_pass: function() {
-      var pass = (this.password);
-      var pass2 = (this.password2);
-      var usu = (this.User.username);
-      var ln = (this.User.last_name);
-      var fn = (this.User.first_name);
-      var email = (this.User.email);
       if (this.password != this.password2) {
-        alert("La contraseña no coinciden")
-        return false;
+        $('#clickme').on('click')
+        $('#alert_placeholder').html('<div class="alert alert-danger"><span>"Los campos no coinciden"</span></div>')
       } else {
         this.$http.put('http://127.0.0.1:8000/password/' + this.User.id + '/', {
-            password: pass,
-            first_name: fn,
-            last_name: ln,
-            username: usu,
-            email: email
+            password: this.password,
+            username: this.User.username,
+            email: this.User.email
           }, {
             headers: {
               Authorization: "Token " + (localStorage.token)
@@ -73,7 +65,8 @@ var vm = new Vue({
           })
           .then((response) => {
             $('#change').modal('hide');
-            return true;
+            this.password = "";
+            this.password2 = "";
           })
           .catch((err) => {
             console.log(err);
@@ -248,40 +241,40 @@ var vm = new Vue({
                 "Authorization": "Token " + (localStorage.token),
               },
             })
-            .then((response) => {
-            })
+            .then((response) => {})
             .catch((err) => {
               console.log(err);
             })
-        } else {
-          if (this.Tareas[i].pending == false) {
-            this.Tareas[i].pending = true
-            this.$http.put('http://127.0.0.1:8000/tareas/' + this.Tareas[i].id + '/', this.Tareas[i], {
-              headers: {
-                "Authorization": "Token " + (localStorage.token),
-              },
-            })
-            .then((response) => {
-
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-          }else {
-            this.Tareas[i].pending = false
-            this.$http.put('http://127.0.0.1:8000/tareas/' + this.Tareas[i].id + '/', this.Tareas[i], {
-              headers: {
-                "Authorization": "Token " + (localStorage.token),
-              },
-            })
-            .then((response) => {
-
-            })
-            .catch((err) => {
-              console.log(err);
-            })
-          }
         }
+        // } else {
+        //   if (this.Tareas[i].pending == false) {
+        //     this.Tareas[i].pending = true
+        //     this.$http.put('http://127.0.0.1:8000/tareas/' + this.Tareas[i].id + '/', this.Tareas[i], {
+        //       headers: {
+        //         "Authorization": "Token " + (localStorage.token),
+        //       },
+        //     })
+        //     .then((response) => {
+        //
+        //     })
+        //     .catch((err) => {
+        //       console.log(err);
+        //     })
+        //   }else {
+        //     this.Tareas[i].pending = false
+        //     this.$http.put('http://127.0.0.1:8000/tareas/' + this.Tareas[i].id + '/', this.Tareas[i], {
+        //       headers: {
+        //         "Authorization": "Token " + (localStorage.token),
+        //       },
+        //     })
+        //     .then((response) => {
+        //
+        //     })
+        //     .catch((err) => {
+        //       console.log(err);
+        //     })
+        //   }
+        // }
 
       }
     },

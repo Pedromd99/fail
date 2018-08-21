@@ -42,17 +42,6 @@ from django.views import generic
 from django.utils.encoding import smart_str
 from django.shortcuts import redirect
 
-# User = get_user_model()
-#
-# def get_password_reset_token_expiry_time():
-#     """
-#     Returns the password reset token expirty time in hours (default: 24)
-#     Set Django SETTINGS.DJANGO_REST_MULTITOKENAUTH_RESET_TOKEN_EXPIRY_TIME to overwrite this time
-#     :return: expiry time
-#     """
-#     # get token validation time
-#     return getattr(settings, 'DJANGO_REST_MULTITOKENAUTH_RESET_TOKEN_EXPIRY_TIME', 24)
-#
 
 class UserViewSet(viewsets.ModelViewSet):
 
