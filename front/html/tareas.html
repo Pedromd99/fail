@@ -51,7 +51,7 @@
       <table class="table">
         <thead>
           <tr>
-            <th><input type="checkbox" @click="marcartodo(Tareas)" v-model="isChecked"></th>
+            <th><input id='check' type="checkbox" @click="marcartodo(Tareas)" v-model="isChecked"> </th>
             <th scope="col">Tareas</th>
             <th scope="col">Borrar</th>
             <th scope="col">Editar</th>
@@ -59,7 +59,7 @@
         </thead>
         <tbody>
           <tr v-for="Tarea in Tareas">
-            <td><input @click="marcar(Tarea)" :checked='!Tarea.pending, isChecked' class="btn btn-primary" type="checkbox" :class="Tarea.pending"></td>
+            <td><input id='check2' @click="marcar(Tarea)" :checked='!Tarea.pending, isChecked' class="btn btn-primary" type="checkbox" :class="Tarea.pending"></td>
             <td :class="{completed: !Tarea.pending}"> <label class="description">{{Tarea.description}}</label> </td>
             <td> <a @click="deleteTarea(Tarea.id)" href=""><i class="far fa-trash-alt fa-lg"></i></a> </td>
             <td> <a style="color:#007bff" @click="getTarea(Tarea.id)"><i class="far fa-edit fa-lg"></i></a></td>

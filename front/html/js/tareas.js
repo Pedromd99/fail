@@ -234,50 +234,31 @@ var vm = new Vue({
 
     marcartodo: function() {
       for (var i = 0; i < this.Tareas.length; i++) {
-        if (this.Tareas[i].pending == true) {
-          this.Tareas[i].pending = false
+        if (this.isChecked == true) {
+          this.Tareas[i].pending = true
           this.$http.put('http://127.0.0.1:8000/tareas/' + this.Tareas[i].id + '/', this.Tareas[i], {
+            headers: {
+              "Authorization": "Token " + (localStorage.token),
+            },
+          })
+          .then((response) => {
+          })
+        } else {
+          if (this.isChecked == false) {
+            this.Tareas[i].pending = false
+            this.$http.put('http://127.0.0.1:8000/tareas/' + this.Tareas[i].id + '/', this.Tareas[i], {
               headers: {
                 "Authorization": "Token " + (localStorage.token),
               },
             })
-            .then((response) => {})
-            .catch((err) => {
-              console.log(err);
+            .then((response) => {
             })
+          }
         }
-        // } else {
-        //   if (this.Tareas[i].pending == false) {
-        //     this.Tareas[i].pending = true
-        //     this.$http.put('http://127.0.0.1:8000/tareas/' + this.Tareas[i].id + '/', this.Tareas[i], {
-        //       headers: {
-        //         "Authorization": "Token " + (localStorage.token),
-        //       },
-        //     })
-        //     .then((response) => {
-        //
-        //     })
-        //     .catch((err) => {
-        //       console.log(err);
-        //     })
-        //   }else {
-        //     this.Tareas[i].pending = false
-        //     this.$http.put('http://127.0.0.1:8000/tareas/' + this.Tareas[i].id + '/', this.Tareas[i], {
-        //       headers: {
-        //         "Authorization": "Token " + (localStorage.token),
-        //       },
-        //     })
-        //     .then((response) => {
-        //
-        //     })
-        //     .catch((err) => {
-        //       console.log(err);
-        //     })
-        //   }
-        // }
-
       }
     },
+    //tachado = false //normal = true
+
 
   },
 });
